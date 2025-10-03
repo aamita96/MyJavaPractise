@@ -23,12 +23,18 @@ public class Test {
     //    CreditCardv0 cc = new CreditCardv0();
     
     //  Example of annonymous class - here Payment is an interface but we create a temporary class using {} and implemted the pay method to make the payment.
-       cart.processPayemnt(new Payment() {
+      /*  cart.processPayemnt(new Payment() {
             @Override
             public void pay(double amount) {
                 System.out.println("Paid " + amount + " using UPI.");
             }
-       });
+       }); */
 
+    // Local Inner class instance
+       Hotel hotel = new Hotel("Taj", 10, 5);
+        hotel.reserveRoom("David", 2);
+        hotel.reserveRoom("Akshit", 5);
+        hotel.reserveRoom("", 5);
+        hotel.reserveRoom("Lakhan", -8);
     }
 }

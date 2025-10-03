@@ -13,6 +13,27 @@ A member inner class is a class defined within another class, at the same level 
 *   **When to Use**: Use it when two classes are logically linked, and the inner class needs to be closely tied to an instance of the outer class.
     *   **Example**: A `Car` class can have an `Engine` inner class. Each `Engine` object is inherently linked to a specific `Car` object (like a "Tata Safari" car having its own specific engine). The video shows how without an inner class, you'd need to manually pass the `Car` instance to the `Engine`'s constructor to create this link.
 
+
+### ✅ Example:
+
+```java
+public class Car {
+    private String model = "Tata Safari";
+
+    class Engine {
+        void start() {
+            System.out.println(model + " engine started!");
+        }
+    }
+
+    public static void main(String[] args) {
+        Car car = new Car();
+        Car.Engine engine = car.new Engine(); // Member inner class
+        engine.start();
+    }
+}
+```
+
 ### 2. Static Nested Class 💻
 
 A static nested class is a class marked with the `static` keyword inside another class.
@@ -24,6 +45,23 @@ A static nested class is a class marked with the `static` keyword inside another
 *   **When to Use**: Use it when you want to group related classes together for better organization and memory management, but the inner class doesn't depend on an instance of the outer class.
     *   **Example**: A `Computer` class can contain a static nested `USB` class. A USB is related to a computer, but it's not tied to a *specific computer instance*. This grouping helps keep related code together without creating unnecessary object dependencies.
 
+### ✅ Example:
+
+```java
+public class Computer {
+    static class USB {
+        void plugIn() {
+            System.out.println("USB plugged into computer.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Computer.USB usb = new Computer.USB(); // Static nested class
+        usb.plugIn();
+    }
+}
+```
+
 ### 3. Anonymous Inner Class 🎭
 
 An anonymous inner class is a class without a name, created for a one-time use.
@@ -32,6 +70,27 @@ An anonymous inner class is a class without a name, created for a one-time use.
 *   **Syntax**: It is defined within an expression using the `new` keyword, followed by the name of the interface or class it's implementing/extending, and then curly braces `{}` containing the method implementations.
 *   **When to Use**: Use it when you need a "one-time use" object and creating a separate, named class for a simple implementation would be overkill.
     *   **Example**: A `ShoppingCard` needs a `Payment` object. Instead of creating a whole new `CreditCard` class that implements the `Payment` interface, you can create an anonymous inner class right where the `Payment` object is needed, providing the implementation for the `pay()` method on the spot.
+
+### ✅ Example:
+
+```java
+interface Payment {
+    void pay(double amount);
+}
+
+public class ShoppingCart {
+    public static void main(String[] args) {
+        Payment payment = new Payment() {
+            @Override
+            public void pay(double amount) {
+                System.out.println("Paid ₹" + amount + " using anonymous inner class.");
+            }
+        };
+
+        payment.pay(499.99);
+    }
+}
+```
 
 ### 4. Local Inner Class 🏨
 
@@ -42,5 +101,33 @@ A local inner class is a class defined inside a method or a block of code.
 *   **When to Use**: Use it when you need a class only for a very specific task within a single method. This helps to encapsulate logic that is relevant only to that method.
     *   **Example**: A `Hotel` class has a `reserveRoom()` method. Inside this method, a local inner class called `ReservationValidator` is created to handle all the validation logic (checking guest name, room availability, etc.). This keeps the validation logic neatly bundled and hidden within the `reserveRoom` method, where it's solely needed.
 
+### ✅ Example:
+
+```java
+public class Hotel {
+    public void reserveRoom(String guestName) {
+        int availableRooms = 3;
+
+        class ReservationValidator {
+            void validate() {
+                if (guestName != null && !guestName.isEmpty() && availableRooms > 0) {
+                    System.out.println("Reservation successful for " + guestName);
+                } else {
+                    System.out.println("Reservation failed.");
+                }
+            }
+        }
+
+        ReservationValidator validator = new ReservationValidator();
+        validator.validate();
+    }
+
+    public static void main(String[] args) {
+        Hotel hotel = new Hotel();
+        hotel.reserveRoom("John Doe");
+    }
+}
+```
+
 ---
-The video emphasizes that you don't need to memorize these types but should understand them to write and read complex Java code effectively.
+The you don't need to memorize these types but should understand them to write and read complex Java code effectively.
