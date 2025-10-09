@@ -30,5 +30,14 @@ public class Main {
             default: 
                 System.out.println("Weekend arrived!");
         }
+
+        // New syntax of switch
+        String res = switch(day) {
+            case MONDAY -> "M";
+            case TUESDAY -> "T";
+            default -> "Weekend";
+        };
+        
+        System.out.println(res);
     }
 }
