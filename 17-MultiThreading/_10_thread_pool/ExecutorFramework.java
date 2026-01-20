@@ -6,6 +6,9 @@ public class ExecutorFramework {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         ExecutorService executor = Executors.newFixedThreadPool(9);
+        // Executors.newScheduledThreadPool(2);
+        // Executors.newSingleThreadExecutor();
+        // ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
         
         for (int i = 1; i < 10; i++) {
             int finalI = i;
