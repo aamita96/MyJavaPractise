@@ -21,7 +21,23 @@ public class ComparableDemo {
         System.out.println(list);
     }
 }
-
+/**
+ * 1️⃣ Comparable (Natural Order)
+ * Comparable is an interface that a class implements to define its natural sorting order.
+ *    The class itself decides how objects are compared. 
+ *    You can have only one natural order.
+ * 
+ * 2️⃣ Comparator (Custom Order)
+ * Comparator is a separate class that defines how to compare two objects.
+ *  
+ * 📌 Use this when:
+ *  - You can’t change the class
+ *  - You want multiple sorting ways
+ * 
+ * Easy Memory Trick 🧠 
+ * - Comparable → “I compare myself”
+ * - Comparator → “Someone else compares me”
+ */
 class Student implements Comparable<Student> {
     private String name;
     private double gpa;

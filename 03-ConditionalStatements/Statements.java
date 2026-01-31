@@ -1,7 +1,42 @@
 public class Statements {
     public static void main(String[] args) {
+        /*
+                Enhanced switch = A replacement to many else if statements
+                                  (Java14 feature)
+
+                 Traditional Switch (pre-Java 14):
+
+                 int day = 2;
+                 String dayName;
+
+                  switch (day) {
+                      case 1:
+                         dayName = "Monday";
+                         break;
+                      case 2:
+                         dayName = "Tuesday";
+                         break;
+                      default:
+                         dayName = "Unknown";
+                    }
+
+
+                 Enhanced Switch (Java 14+):
+
+                 int day = 2;
+
+                 String dayName = switch (day) {
+                    case 1 -> "Monday";
+                    case 2 -> "Tuesday";
+                    default -> "Unknown";
+                 };
+
+          * Classic switch is a statement, cannot return a value directly.
+          * Enhanced switch can be used as an expression, and return values (assigned to variables directly).
+          */
+
         //relational operators
-            // Relational Operators compare two values and return a boolean result
+        // Relational Operators compare two values and return a boolean result
         int a = 2;
         int b = 4;
         boolean c = a > b;

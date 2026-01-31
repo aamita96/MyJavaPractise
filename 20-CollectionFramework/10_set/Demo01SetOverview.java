@@ -46,17 +46,17 @@ public class Demo01SetOverview {
             All Set implementations:
             - Store UNIQUE elements (no duplicates)
             - Do NOT support indexing
-            - At most one null element (except TreeSet & EnumSet)
+            - At most one null element (if the implementation allows null except TreeSet & EnumSet)
 
             --------------------------------------------------
             1) HashSet
             --------------------------------------------------
-            - Uses Hash Table internally
+            - Uses HashMap internally (hash table–based data structure)
             - Order: ❌ No guaranteed order
             - Performance:
                 add(), remove(), contains() → O(1) average
             - Allows: ✔ one null element
-            - Fastest general-purpose Set
+            - Fastest general-purpose Set (on average)
 
             Use cases:
             - Removing duplicates
@@ -69,10 +69,10 @@ public class Demo01SetOverview {
             --------------------------------------------------
             2) LinkedHashSet
             --------------------------------------------------
-            - Uses Hash Table + Doubly Linked List
+            - Uses LinkedHashMap internally (hash table + doubly linked list)
             - Order: ✔ Maintains INSERTION order
             - Performance:
-                Slightly slower than HashSet
+                Slightly slower than HashSet due to order maintenance
             - Allows: ✔ one null element
 
             Use cases:
@@ -91,7 +91,10 @@ public class Demo01SetOverview {
                 (Natural ordering or Comparator)
             - Performance:
                 add(), remove(), contains() → O(log n)
-            - Allows: ❌ NO null elements
+            - Allows: ❌ null not allowed (in most cases)
+            - Why?
+                If you create a TreeSet with a custom comparator that explicitly handles null, it can work.
+                But 99% of real-world usage = no nulls.
 
             Extra features:
             - headSet(), tailSet(), subSet()
@@ -137,6 +140,25 @@ public class Demo01SetOverview {
             - Need order → LinkedHashSet
             - Need sorting → TreeSet
             - Using enums → EnumSet
+
+            --------------------------------------------------
+            For concurrency we have -
+            --------------------------------------------------
+
+            For thread safety use Collections.synchronizedSet(set) or RECOMMENDED: Replaced with a concurrent Set (CopyOnWriteArraySet, ConcurrentSkipListSet)
+            
+            Why ConcurrentSkipListSet is RECOMMENDED?
+            - Collections.synchronizedSet uses one big lock → slow with many threads
+            - ConcurrentSkipListSet uses fine-grained, non-blocking techniques → scales much better
+            - That’s why ConcurrentSkipListSet is usually preferred in concurrent programs.
+            
+            🧠 One-line purpose of each (CopyOnWriteArraySet, ConcurrentSkipListSet)
+            
+            ConcurrentSkipListSet
+            → Thread-safe, sorted set optimized for frequent reads and writes
+
+            CopyOnWriteArraySet
+            → Thread-safe set optimized for very frequent reads and very rare writes
         */
 
         Set<Integer> set = new LinkedHashSet<>();

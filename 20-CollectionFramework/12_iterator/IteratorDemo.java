@@ -24,6 +24,20 @@ public class IteratorDemo {
 
         System.out.println(list);
 
+        /**
+         * 8️⃣ Simple rule to remember 🧩
+            Think like this:
+                
+                🟢 iterator()
+                - “I just want to read or remove elements”
+                - “Forward only”
+
+                🔵 listIterator()
+                - “I want full control”
+                - “Forward + backward”
+                - “Add, replace, index”
+         */
+        
         // Internally it converts this above loop like below -
         // Iterator<Integer> iterator = list.iterator();
         // while (iterator.hasNext()) {
